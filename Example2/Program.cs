@@ -57,13 +57,21 @@ namespace Example2
 
             var thread = new Thread(() =>
             {
-                SampleMessageProducer.SimulateMessageSending(AppConstants.QueueUri, AppConstants.QueuePath);
+                try
+                {
+                    SampleMessageProducer.SimulateMessageSending(AppConstants.QueueUri, AppConstants.QueuePath);
+                }
+                catch (ThreadAbortException e)
+                {
+                    Console.WriteLine("Thread is stopped");
+                }
             });
 
             thread.Start();
 
             Console.ReadLine();
             queueHandler.Dispose();
+            thread.Abort();
         }
 
         private static void QueueHandler_ConnectionExceptionListener(Exception exception)
