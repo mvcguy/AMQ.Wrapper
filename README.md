@@ -66,6 +66,6 @@ message.Properties["NMSXGroupID"] = "Group-" + Guid.NewGuid();
 message.Properties["myHeader"] = "Header-" + DateTime.Now.ToString("T");
 producer.Send(message);
 ```
-# ### [Nuget] (https://www.nuget.org/packages/AMQ.Wrapper/ "Nuget") ###
+### [Nuget] (https://www.nuget.org/packages/AMQ.Wrapper/ "Nuget") ###
 
 PM> Install-Package AMQ.Wrapper
