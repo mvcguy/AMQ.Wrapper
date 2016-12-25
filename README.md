@@ -1,13 +1,13 @@
 # AMQ.Wrapper
 This wrapper is build to simplify the process of creating a queue consumer or a producer. Sample projects have been added to demonstrate this. The wrapper is flexible enough to adapt to your personal business needs. I hope it will be benenficial and useful for your projects. Contact me at @ me.shahidali@hotmail.com for any queries. Thanks enjoy!
-# Simple Usage
+# Consumer Simple Usage
 ```csharp
 var queueHandler = new DefaultQueueHandler("activemq:tcp://localhost:61616", "amq.test1",
                 new List<IMessageHandler>() { new SampleMessageHandler() });
 
 queueHandler.StartSession();
 ```
-# Advance Usage
+# Consumer Advance Usage
 ```csharp
  IQueueHandler queueHandler = new DefaultQueueHandler(
                 AppConstants.QueueUri,
@@ -53,7 +53,19 @@ queueHandler.AdvancedSettings.ConfigInternalLogBehaviour = (message, level) =>
 
 queueHandler.StartSession();
 ```
+# Message Producer Sample
+```csharp
+IDefaultMessageProducer producer = new DefaultMessageProducer(uri, path);
+producer.DeliveryMode = MsgDeliveryMode.Persistent;
+producer.StartProducer();
 
+// Send a message
+var message = producer.Session.CreateTextMessage(DateTime.Now.ToString("T") + ": Hello World!");
+message.NMSCorrelationID = Guid.NewGuid().ToString();
+message.Properties["NMSXGroupID"] = "Group-" + Guid.NewGuid();
+message.Properties["myHeader"] = "Header-" + DateTime.Now.ToString("T");
+producer.Send(message);
+```
 # Nuget install
 
 Install-Package AMQ.Wrapper
