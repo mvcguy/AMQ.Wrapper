@@ -32,7 +32,7 @@ namespace AMQ.Wrapper.Receiver
         public Func<IMessage, bool, ISession, bool> ConfigAckBehaviour;
 
         /// <summary>
-        /// Use this delegate to subscribe to the internal of the queue handler.
+        /// Use this delegate to subscribe to the internal log of the queue handler.
         /// </summary>
         public Action<string, LogLevel> ConfigInternalLogBehaviour;
     }
