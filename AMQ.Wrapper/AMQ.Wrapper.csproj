@@ -44,14 +44,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Receiver\DefaultMessageConsumer.cs" />
-    <Compile Include="Receiver\DefaultQueueHandler.cs" />
-    <Compile Include="Receiver\IDefaultMessageConsumer.cs" />
-    <Compile Include="Receiver\IMessageHandler.cs" />
-    <Compile Include="Receiver\IQueueHandler.cs" />
-    <Compile Include="Receiver\LogLevel.cs" />
-    <Compile Include="Receiver\QueueSettings.cs" />
-    <Compile Include="Receiver\SessionResetPolicy.cs" />
+    <Compile Include="DefaultMessageConsumer.cs" />
+    <Compile Include="DefaultMessageProducer.cs" />
+    <Compile Include="DefaultQueueHandler.cs" />
+    <Compile Include="IDefaultMessageConsumer.cs" />
+    <Compile Include="IDefaultMessageProducer.cs" />
+    <Compile Include="IMessageHandler.cs" />
+    <Compile Include="IQueueHandler.cs" />
+    <Compile Include="LogLevel.cs" />
+    <Compile Include="QueueSettings.cs" />
+    <Compile Include="SessionResetPolicy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

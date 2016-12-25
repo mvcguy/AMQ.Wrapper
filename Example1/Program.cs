@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using AMQ.Wrapper.Receiver;
+using AMQ.Wrapper;
 
 namespace Example1
 {

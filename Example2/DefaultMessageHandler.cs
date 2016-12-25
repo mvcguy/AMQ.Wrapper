@@ -1,5 +1,5 @@
 ﻿using System;
-using AMQ.Wrapper.Receiver;
+using AMQ.Wrapper;
 using Apache.NMS;
 
 namespace Example2

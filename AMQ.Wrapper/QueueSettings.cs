@@ -1,7 +1,7 @@
 ﻿using System;
 using Apache.NMS;
 
-namespace AMQ.Wrapper.Receiver
+namespace AMQ.Wrapper
 {
     public class QueueSettings
     {
@@ -35,5 +35,12 @@ namespace AMQ.Wrapper.Receiver
         /// Use this delegate to subscribe to the internal log of the queue handler.
         /// </summary>
         public Action<string, LogLevel> ConfigInternalLogBehaviour;
+
+        /// <summary>
+        /// the delegate is used to initialize the message consumer.
+        /// do not register any listener here. To register listener use <see cref="DefaultMessageProducer.ProducerTransformer"/>
+        /// or <see cref="DefaultMessageConsumer.ConsumerTransformer"/>
+        /// </summary>
+        public Func<ISession, IDestination, IMessageProducer> ConfigMessageProducer;
     }
 }

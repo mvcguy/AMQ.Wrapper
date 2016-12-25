@@ -1,4 +1,4 @@
-﻿namespace AMQ.Wrapper.Receiver
+﻿namespace AMQ.Wrapper
 {
     public enum LogLevel
     {

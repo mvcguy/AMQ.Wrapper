@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using AMQ.Wrapper.Receiver;
+using AMQ.Wrapper;
 using Apache.NMS;
 
 namespace Example2

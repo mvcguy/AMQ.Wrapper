@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading;
 using Apache.NMS;
 
-namespace AMQ.Wrapper.Receiver
+namespace AMQ.Wrapper
 {
     /// <summary>
     /// A wrapper class around AMQ API to simplify the whole process.

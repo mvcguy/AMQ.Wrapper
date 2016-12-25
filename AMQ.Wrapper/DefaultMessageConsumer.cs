@@ -1,7 +1,7 @@
 ﻿using System;
 using Apache.NMS;
 
-namespace AMQ.Wrapper.Receiver
+namespace AMQ.Wrapper
 {
     /// <summary>
     /// a wrapper class around <see cref="IMessageConsumer"/> to simplify the process

@@ -1,6 +1,6 @@
 ﻿using Apache.NMS;
 
-namespace AMQ.Wrapper.Receiver
+namespace AMQ.Wrapper
 {
     public interface IDefaultMessageConsumer : IMessageConsumer
     {

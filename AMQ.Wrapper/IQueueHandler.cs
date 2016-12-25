@@ -1,7 +1,7 @@
 ﻿using System;
 using Apache.NMS;
 
-namespace AMQ.Wrapper.Receiver
+namespace AMQ.Wrapper
 {
     public interface IQueueHandler : IDisposable
     {
