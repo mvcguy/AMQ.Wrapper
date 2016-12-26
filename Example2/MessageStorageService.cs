@@ -18,8 +18,10 @@ namespace Example2
             var item = GetMessageHistoryItem(message.NMSCorrelationID);
             if (item != null)
             {
-                item.MessageProcessed = true;
+                item.MessageProcessed = isProcessed;
                 item.LastProcessedOn = DateTime.Now;
+                item.Redelivered = true;
+                item.RedeliveredCount = item.RedeliveredCount + 1;
             }
             else
             {
@@ -27,8 +29,10 @@ namespace Example2
                 {
                     CreatedDatetime = DateTime.Now,
                     LastProcessedOn = DateTime.Now,
-                    MessageProcessed = false,
-                    MessageId = new Guid(message.NMSCorrelationID)
+                    MessageProcessed = isProcessed,
+                    MessageId = new Guid(message.NMSCorrelationID),
+                    Redelivered = false,
+                    RedeliveredCount = 0,
                 };
                 Store.Add(item);
             }
