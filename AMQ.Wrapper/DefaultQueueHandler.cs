@@ -16,6 +16,12 @@ namespace AMQ.Wrapper
     /// </summary>
     public class DefaultQueueHandler : IQueueHandler
     {
+        /// <summary>
+        /// usage
+        /// QueueHandlingErrorListener(Exception, IMessage,Handled,Acknowledged)
+        /// </summary>
+        public Action<Exception, IMessage, bool, bool> QueueHandlingErrorListener { get; set; }
+
         public ConsumerTransformerDelegate ConsumerTransformer { get; set; }
 
         public event ExceptionListener ConnectionExceptionListener;
@@ -227,6 +233,12 @@ namespace AMQ.Wrapper
         protected virtual void ErrorInConsumingMessage(IMessage message, Exception exception, bool handled, bool acknowledged)
         {
             LogEntry(string.Format("ERROR | error occurred while processing message '{0}' Error: {1}", message.NMSCorrelationID, exception.Message), LogLevel.Error);
+
+            if (QueueHandlingErrorListener != null)
+            {
+                QueueHandlingErrorListener.Invoke(exception, message, handled, acknowledged);
+            }
+
         }
 
         /// <summary>
@@ -358,7 +370,7 @@ namespace AMQ.Wrapper
                         throw new ArgumentOutOfRangeException();
                 }
             }
-            
+
         }
 
         /// <summary>

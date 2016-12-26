@@ -21,7 +21,7 @@ namespace Example2
                 producer.DeliveryMode = MsgDeliveryMode.Persistent;
 
                 producer.StartProducer();
-
+                
                 // Send a message
                 var message = producer.Session.CreateTextMessage(DateTime.Now.ToString("T") + ": Hello World!");
                 message.NMSCorrelationID = Guid.NewGuid().ToString();

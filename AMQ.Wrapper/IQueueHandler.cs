@@ -14,7 +14,7 @@ namespace AMQ.Wrapper
         /// <summary>
         /// use this configure queue session, connection factory, connection, or queue destination
         /// </summary>
-        QueueSettings AdvancedSettings { get;}
+        QueueSettings AdvancedSettings { get; }
 
         /// <summary>
         /// A Delegate that is called each time a Message is dispatched to allow the client to do
@@ -27,6 +27,12 @@ namespace AMQ.Wrapper
         /// </summary>
         event ExceptionListener ConnectionExceptionListener;
 
-        DateTime SessionStartedOn { get;}
+        DateTime SessionStartedOn { get; }
+
+        /// <summary>
+        /// usage
+        /// QueueHandlingErrorListener(Exception, IMessage,Handled,Acknowledged)
+        /// </summary>
+        Action<Exception, IMessage, bool, bool> QueueHandlingErrorListener { get; set; }
     }
 }
