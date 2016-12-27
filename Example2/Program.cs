@@ -61,7 +61,7 @@ namespace Example2
                 {
                     SampleMessageProducer.SimulateMessageSending(AppConstants.QueueUri, AppConstants.QueuePath);
                 }
-                catch (ThreadAbortException e)
+                catch (ThreadAbortException)
                 {
                     Console.WriteLine("Thread is stopped");
                 }

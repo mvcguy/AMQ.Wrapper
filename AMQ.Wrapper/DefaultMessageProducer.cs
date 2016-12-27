@@ -23,7 +23,7 @@ namespace AMQ.Wrapper
 
         public DefaultMessageProducer(string queueUri, string queuePath, QueueSettings queueSettings = null) : base(queueUri, queuePath, queueSettings)
         {
-            
+
         }
 
         public virtual void Send(IMessage message)
@@ -127,7 +127,7 @@ namespace AMQ.Wrapper
             MessageProducer = QueueSettings.ConfigMessageProducer != null
                 ? QueueSettings.ConfigMessageProducer.Invoke(Session, Destination)
                 : Session.CreateProducer(Destination);
-            
+
             MessageProducer.DeliveryMode = DeliveryMode;
             MessageProducer.TimeToLive = TimeToLive;
             MessageProducer.RequestTimeout = RequestTimeout;
@@ -137,9 +137,12 @@ namespace AMQ.Wrapper
             MessageProducer.ProducerTransformer += ProducerTransformer;
         }
 
-        public override void Dispose()
+        protected override void Dispose(bool disposing)
         {
-            base.Dispose();
+            base.Dispose(disposing);
+
+            if (!disposing) return;
+
             if (MessageProducer != null)
             {
                 MessageProducer.Dispose();

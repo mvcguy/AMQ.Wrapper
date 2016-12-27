@@ -105,8 +105,21 @@ namespace AMQ.Wrapper
                 : new NMSConnectionFactory(QueueUri);
         }
 
-        public virtual void Dispose()
+        ~DefaultMessageConsumer()
         {
+            Dispose(false);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposing) return;
+
             if (MessageConsumer != null)
             {
                 MessageConsumer.Dispose();

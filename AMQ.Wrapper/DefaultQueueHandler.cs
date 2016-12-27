@@ -328,7 +328,6 @@ namespace AMQ.Wrapper
         /// returning true from this method will casue the message to be acknowledged and removed from queue
         /// </summary>
         /// <param name="message"></param>
-        /// <param name="historyItem"></param>
         /// <returns></returns>
         protected virtual bool HandleMessage(IMessage message)
         {
@@ -373,12 +372,15 @@ namespace AMQ.Wrapper
 
         }
 
-        /// <summary>
-        /// this will also abort the SessionResetPolicyThread
-        /// If overriden, make sure SessionResetPolicyThread is aborted here, or somewhere before disposing
-        /// </summary>
-        public virtual void Dispose()
+        ~DefaultQueueHandler()
         {
+            Dispose(false);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposing) return;
+
             if (SessionResetPolicyThread != null)
             {
                 try
@@ -394,7 +396,16 @@ namespace AMQ.Wrapper
             {
                 MessageConsumer.Dispose();
             }
+        }
 
+        /// <summary>
+        /// this will also abort the SessionResetPolicyThread
+        /// If overriden, make sure SessionResetPolicyThread is aborted here, or somewhere before disposing
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
